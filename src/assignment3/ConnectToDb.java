@@ -35,7 +35,7 @@ void go() {
 		(new oracle.jdbc.driver.OracleDriver());
 	    String url = "jdbc:oracle:thin:@" + host + ":1527:cosc344";
             System.out.println("url: " + url);
-	    con = DriverManager.getConnection(url, "jgoodman","g00dmans" );
+	    con = DriverManager.getConnection(url, "jgoodman","" );
 	    System.out.println("Connected to Oracle");
 	} catch (SQLException e) {
 	    System.out.println(e.getMessage());
