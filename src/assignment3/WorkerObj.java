@@ -5,6 +5,10 @@
  */
 package assignment3;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author jgoodman
@@ -85,6 +89,34 @@ public class WorkerObj {
         this.is_Active = is_Active;
     }
     
-    
+     public void insertWorker(WorkerObj wo) throws SQLException {
+        
+         String woFname = wo.getfName();
+         String woMname = wo.getmName();
+         String woLname = wo.getlName();
+         char woGender = wo.getGender();
+         String woDOB = wo.getDob();
+         String woStartDate = wo.getStart_date();
+         char woIsActive = wo.getIs_Active();
+         
+            ConnectToDb conDB = new ConnectToDb();
+          
+            String sql = "INSERT INTO WORKER(F_NAME, M_NAME, L_NAME, GENDER, D_O_B, START_DATE, IS_ACTIVE)"
+                + "values(?,?,?,?,?,?,?)";
+            Connection con = (Connection) conDB;
+            PreparedStatement stmt = con.prepareStatement(sql);
+            
+                 stmt.setString(1, woFname);
+                 stmt.setString(2, woMname);
+                 stmt.setString(3, woLname);
+                 stmt.setString(4, String.valueOf(woGender));
+                 stmt.setString(5, woDOB);
+                 stmt.setString(6, woStartDate);
+                 stmt.setString(7, String.valueOf(woIsActive));
+         
+                 stmt.executeUpdate();
+         
+         
+    }
     
 }
